@@ -1,0 +1,12 @@
+.deps/*
+
+*.fdb_latexmk
+*.blg
+*.bbl
+*.synctex.gz
+*.aux
+*.out
+*.log
+*.fls
+*.axp
+*.pdf

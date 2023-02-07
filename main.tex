@@ -1,0 +1,117 @@
+\synctex=1
+\documentclass[review=false,nonacm]{acmart}
+\usepackage{booktabs} % For formal tables
+\usepackage[ruled]{algorithm2e} % For algorithms
+\renewcommand{\algorithmcfname}{ALGORITHM}
+
+\ifnum\pdfstrcmp{\jobname}{main}=0
+\def\anonymize{0}
+\def\release{1}
+\def\shrink{0}
+\fi
+
+\ifnum\pdfstrcmp{\jobname}{draft}=0
+\def\anonymize{0}
+\def\release{0}
+\def\shrink{0}
+\fi
+
+\ifnum\pdfstrcmp{\jobname}{anonymized}=0
+\def\anonymize{1}
+\def\release{1}
+\def\shrink{1}
+\fi
+
+%for overleaf
+\ifnum\pdfstrcmp{\jobname}{output}=0
+\def\anonymize{0}
+\def\release{1}
+\def\shrink{0}
+\fi
+
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\if\shrink1
+  \usepackage[subtle]{savetrees}
+  \widowpenalty=0
+  \displaywidowpenalty=0
+  \usepackage[compact]{titlesec}
+  \titlespacing{\section}{0pt}{1ex}{0ex}
+  \titlespacing{\subsection}{0pt}{0.5ex}{0ex}
+  \titlespacing{\subsubsection}{0pt}{0.5ex}{0ex}
+
+  \titleformat{\subsubsection}
+    {\normalfont\normalsize\bfseries\itshape}{\thesubsubsection}{1em}{}
+  %\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{0ex plus .2ex}
+
+\fi
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{breqn}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+
+\usepackage{tikz}
+\usepackage{pgfplots}\pgfplotsset{compat=1.17}
+\usepackage{subcaption}
+
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+%\IncMargin{-\parindent}
+
+\settopmatter{printacmref=false}
+\setcopyright{none}
+
+% Choose a citation style by commenting/uncommenting the appropriate line:
+\setcitestyle{acmnumeric}
+%\setcitestyle{authoryear}
+
+\title{Draft Title}
+
+\if\anonymize1
+\author{Anonymous Authors}
+\else
+\input{authors}
+\fi
+
+\if\release1
+\newcommand\XXX[1]{}
+\else
+\newcommand\XXX[1]{\begingroup \bfseries\color{red} XXX: #1\endgroup}
+\fi
+
+\newcommand{\Tat}{T{\^a}tonnement}
+
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-}
+
+\usepackage[bibliography=common]{apxproof}
+
+\newtheoremrep{theorem}{Theorem}[section]
+
+\begin{document}
+
+% Abstract. Note that this must come before \maketitle.
+\begin{abstract}
+%\input{abstract}
+\end{abstract}
+
+
+% Title page for title and abstract only.
+\begin{titlepage}
+
+\maketitle
+
+\end{titlepage}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{paper}
+
+
+\end{document}
+
