@@ -37,6 +37,9 @@ anonymize.pdf : main.tex
 %.tex: %.dat
 	./dat2tex $< > $@
 
+arxiv.tar: main.pdf
+	tar -cvzf arxiv.tar $(shell ./get_arxiv_deps.sh .deps/main.d) main.bbl
+
 clean:
 	latexmk -CA
 	rm -rf .deps/
