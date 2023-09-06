@@ -1,5 +1,6 @@
 .deps/*
 arxiv.tar
+split_cmd.sh
 
 .DS_STORE
 
