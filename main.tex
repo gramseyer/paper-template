@@ -52,7 +52,10 @@
 \usepackage{amsmath}
 \usepackage{breqn}
 \usepackage{hyperref}
-\usepackage[T1]{fontenc}
+%Not required on acmart template, and causes font issues if switching to xelatex
+%when using the acmart template.  There's something funky about the order
+%that packages are loaded --- the acmart.cls file has the details worked out
+%\usepackage[T1]{fontenc}
 
 \usepackage{tikz}
 \usepackage{pgfplots}\pgfplotsset{compat=1.17}
@@ -87,8 +90,11 @@
 
 \newcommand{\Tat}{T{\^a}tonnement}
 
-\usepackage{url}
-\def\UrlBreaks{\do\/\do-}
+%url package is loaded by hyperref, and redefining
+%UrlBreaks breaks the special-casing of underscores
+%in bibliography urls
+%\usepackage{url}
+%\def\UrlBreaks{\do\/\do-}
 
 \usepackage[bibliography=common]{apxproof}
 
@@ -96,9 +102,9 @@
 
 \begin{document}
 
-% Abstract. Note that this must come before \maketitle.
+% Abstract. Note that this must come before \maketitle, at least on the acm template.
 \begin{abstract}
-%\input{abstract}
+\input{abstract}
 \end{abstract}
 
 
