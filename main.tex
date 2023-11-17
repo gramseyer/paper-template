@@ -1,8 +1,55 @@
 \synctex=1
-\documentclass[review=false,nonacm]{acmart}
-\usepackage{booktabs} % For formal tables
-\usepackage[ruled]{algorithm2e} % For algorithms
-\renewcommand{\algorithmcfname}{ALGORITHM}
+
+\def\acm{1}
+\def\ieee{0}
+
+%%% Tests
+
+\ifnum\pdfstrcmp{\jobname}{ieee_test}=0
+%\undef\acm
+%\undef\ieee
+\def\acm{0}
+\def\ieee{1}
+
+\def\anonymize{0}
+\def\release{1}
+\def\shrink{0}
+\fi
+
+\ifnum\pdfstrcmp{\jobname}{acm_test}=0
+%\undef\acm
+%\undef\ieee
+\def\acm{1}
+\def\ieee{0}
+
+\def\anonymize{0}
+\def\release{1}
+\def\shrink{0}
+
+\fi
+
+%%%
+
+
+\if\acm1
+  \documentclass[review=false,nonacm]{acmart}
+
+  \settopmatter{printacmref=false}
+  \setcopyright{none}
+
+  % Choose a citation style by commenting/uncommenting the appropriate line:
+  \setcitestyle{acmnumeric}
+  %\setcitestyle{authoryear}
+
+  \bibliographystyle{ACM-Reference-Format}
+\fi
+
+\if\ieee1
+  \documentclass[conference,compsoc]{IEEEtran}
+  \usepackage{cite}
+
+  \bibliographystyle{IEEEtran}
+\fi
 
 \ifnum\pdfstrcmp{\jobname}{main}=0
 \def\anonymize{0}
@@ -29,10 +76,17 @@
 \def\shrink{0}
 \fi
 
+\usepackage{booktabs} % For formal tables
+\usepackage[ruled]{algorithm2e} % For algorithms
+\renewcommand{\algorithmcfname}{ALGORITHM}
+
 \usepackage{geometry}
-\geometry{margin=1in}
+%shrink the margins, if it's allowed
+%\geometry{margin=1in}
+
 
 \if\shrink1
+
   \usepackage[subtle]{savetrees}
   \widowpenalty=0
   \displaywidowpenalty=0
@@ -61,18 +115,14 @@
 \usepackage{pgfplots}\pgfplotsset{compat=1.17}
 \usepackage{subcaption}
 
-\SetAlFnt{\small}
-\SetAlCapFnt{\small}
-\SetAlCapNameFnt{\small}
-\SetAlCapHSkip{0pt}
+%These are probably fine, if you want to cut space
+%\SetAlFnt{\small}
+%\SetAlCapFnt{\small}
+%\SetAlCapNameFnt{\small}
+%\SetAlCapHSkip{0pt}
+
+%Questionable space-cutting hack
 %\IncMargin{-\parindent}
-
-\settopmatter{printacmref=false}
-\setcopyright{none}
-
-% Choose a citation style by commenting/uncommenting the appropriate line:
-\setcitestyle{acmnumeric}
-%\setcitestyle{authoryear}
 
 \title{Draft Title}
 
@@ -109,13 +159,14 @@
 
 
 % Title page for title and abstract only.
-\begin{titlepage}
+%\begin{titlepage}
 
 \maketitle
 
-\end{titlepage}
+%\end{titlepage}
 
-\bibliographystyle{ACM-Reference-Format}
+Empty citation \cite{emptycitation}
+
 \bibliography{paper}
 
 

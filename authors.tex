@@ -13,7 +13,29 @@
   \country{USA}}
 \email{\geoffemail}
 
+%Repeat \author command for more authors
+
 }
 
-\acmauthors{}
+\newcommand{\ieeeauthors}
+{
+\author{
+\IEEEauthorblockN{Geoffrey Ramseyer}
+\IEEEauthorblockA{Stanford University\\
+Stanford, CA 94305\\
+\geoffemail{}
+}
+%\and
+%\IEEEauthorblockN{Foo}
+%\IEEEauthorblockA{Bar}
+}
+}
+
+\if\acm1
+  \acmauthors{}
+\fi
+
+\if\ieee1
+  \ieeeauthors{}
+\fi
 

@@ -1,0 +1,16 @@
+name: Latex test
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with: 
+        submodules: "recursive"
+    - name: test acm
+      run: make acm_test.pdf
+    - name: test ieee
+      run: make ieee_test.pdf

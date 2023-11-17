@@ -31,6 +31,26 @@ anonymize.pdf : main.tex
 		-jobname=anonymize
 -include .deps/anonymize.d
 
+acm_test.pdf : main.tex
+	mkdir -p .deps/
+	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" \
+		-latexoption=-file-line-error \
+		-latexoption=-synctex=1 \
+		-M -MF .deps/acm_test.d \
+		-use-make main.tex \
+		-jobname=acm_test
+-include .deps/acm_test.d
+
+ieee_test.pdf : main.tex
+	mkdir -p .deps/
+	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" \
+		-latexoption=-file-line-error \
+		-latexoption=-synctex=1 \
+		-M -MF .deps/ieee_test.d \
+		-use-make main.tex \
+		-jobname=ieee_test
+-include .deps/ieee_test.d
+
 %.tex: %.raw
 	./raw2tex $< > $@
 
