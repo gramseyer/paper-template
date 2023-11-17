@@ -12,6 +12,8 @@ jobs:
         submodules: "recursive"
     - name: install packages
       run: sudo apt-get install -y latexmk
+    - name: tlmgr init
+      run:  tlmgr init-usertree
     - name: tlmgr update
       run: tlmgr update --all
     - name: test acm
