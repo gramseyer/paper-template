@@ -1,35 +1,68 @@
 \synctex=1
 \pdfoutput=1 %for arxiv
 
+
 \def\acm{1}
 \def\ieee{0}
+\def\lncs{0}
 
-%%% Tests
 
-\ifnum\pdfstrcmp{\jobname}{ieee_test}=0
-%\undef\acm
-%\undef\ieee
-\def\acm{0}
-\def\ieee{1}
+\if\acm1
+  \documentclass[review=false,nonacm]{acmart}
 
+  \settopmatter{printacmref=false}
+  \setcopyright{none}
+
+  % Choose a citation style by commenting/uncommenting the appropriate line:
+  \setcitestyle{acmnumeric}
+  %\setcitestyle{authoryear}
+
+  \bibliographystyle{ACM-Reference-Format}
+\fi
+
+\if\ieee1
+  \documentclass[conference,compsoc]{IEEEtran}
+  \usepackage{cite}
+
+  \bibliographystyle{IEEEtran}
+\fi
+
+\if\lncs1
+\documentclass[runningheads,citeauthoryear]{llncs}
+
+\bibliographystyle{splncs04}
+
+\fi
+
+
+\ifnum\pdfstrcmp{\jobname}{main}=0
 \def\anonymize{0}
 \def\release{1}
 \def\shrink{0}
 \fi
 
-\ifnum\pdfstrcmp{\jobname}{acm_test}=0
-%\undef\acm
-%\undef\ieee
-\def\acm{1}
-\def\ieee{0}
+\ifnum\pdfstrcmp{\jobname}{draft}=0
+\def\anonymize{0}
+\def\release{0}
+\def\shrink{0}
+\fi
 
+\ifnum\pdfstrcmp{\jobname}{anonymize}=0
+\def\anonymize{1}
+\def\release{1}
+\def\shrink{0}
+\fi
+
+%for overleaf
+\ifnum\pdfstrcmp{\jobname}{output}=0
 \def\anonymize{0}
 \def\release{1}
 \def\shrink{0}
-
 \fi
 
-%%%
+\usepackage{booktabs} % For formal tables
+\usepackage[ruled]{algorithm2e} % For algorithms
+\renewcommand{\algorithmcfname}{ALGORITHM}
 
 
 \if\acm1
@@ -81,23 +114,26 @@
 \usepackage[ruled]{algorithm2e} % For algorithms
 \renewcommand{\algorithmcfname}{ALGORITHM}
 
-\usepackage{geometry}
-%shrink the margins, if it's allowed
-%\geometry{margin=1in}
-
 
 \if\shrink1
 
-  \usepackage[subtle]{savetrees}
+  %\usepackage[subtle]{savetrees}
   \widowpenalty=0
   \displaywidowpenalty=0
-  \usepackage[compact]{titlesec}
-  \titlespacing{\section}{0pt}{1ex}{0ex}
-  \titlespacing{\subsection}{0pt}{0.5ex}{0ex}
-  \titlespacing{\subsubsection}{0pt}{0.5ex}{0ex}
 
-  \titleformat{\subsubsection}
-    {\normalfont\normalsize\bfseries\itshape}{\thesubsubsection}{1em}{}
+  %%% WARNING: USING PACKATE AT ALL CAUSES MARGIN CHANGES RIP FC25 short paper  
+  %\usepackage{geometry}
+  %shrink the margins, if it's allowed
+  %\geometry{margin=1in}
+
+
+  %\usepackage[compact]{titlesec}
+  %\titlespacing{\section}{0pt}{1ex}{0ex}
+  %\titlespacing{\subsection}{0pt}{0.5ex}{0ex}
+  %\titlespacing{\subsubsection}{0pt}{0.5ex}{0ex}
+
+  %\titleformat{\subsubsection}
+  %  {\normalfont\normalsize\bfseries\itshape}{\thesubsubsection}{1em}{}
   %\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{0ex plus .2ex}
 
 \fi
